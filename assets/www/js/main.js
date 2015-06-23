@@ -1,8 +1,13 @@
-function init() {
-    document.addEventListener("deviceready", deviceready, true);
+var db;
+
+function setup(tx) {
+    tx.executeSql('create table if not exists log(id INTEGER PRIMARY KEY AUTOINCREMENT, '+
+                  'log TEXT, created DATE)');
 }
 
-var db;
+function errorHandler(e) {
+    alert(e.message);
+}
 
 function deviceready() {
     alert("Device Ready");
@@ -12,13 +17,8 @@ function deviceready() {
     alert("Database Setup.");
 }
 
-function setup(tx) {
-    tx.executeSql('create table if not exists log(id INTEGER PRIMARY KEY AUTOINCREMENT, '+
-                  'log TEXT, created DATE)');
-}
-
-function errorHandler(e) {
-    alert(e.message);
+function init() {
+    document.addEventListener("deviceready", deviceready, true);
 }
 
 function dbReady() {
