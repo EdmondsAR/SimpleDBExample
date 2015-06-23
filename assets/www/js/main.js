@@ -5,8 +5,11 @@ function init() {
 var db;
 
 function deviceready() {
+    alert("Device Ready");
     db = window.openDatabase("test", "1.0", "test", 1000000);
+    alert("Database Open");
     db.transaction(setup, errorHandler, dbReady);
+    alert("Database Setup.");
 }
 
 function setup(tx) {
